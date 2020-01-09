@@ -1,1 +1,1 @@
-# php-sockert
+# php-socket

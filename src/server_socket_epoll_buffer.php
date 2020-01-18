@@ -26,7 +26,7 @@ $base = new EventBase();
 //PERSIST可以让注册的事件在执行完后不被删除,直到调用Event::del()删除.
 $event = new Event($base, $socket, Event::READ | Event::PERSIST, 'ev_accept', $base);
 $event->add();
-echo  "start run...\n";
+echo "start run...\n";
 
 //进入事件循环
 $base->loop();
@@ -52,7 +52,7 @@ function ev_accept($socket, $flag, $base)
     //新建EventBuffer 事件
     $event = new EventBufferEvent($base, $connection, 0, 'ev_read', 'ev_write', 'ev_status', $id);
     $event->setTimeouts(30, 30); //read and write timeout
-    $event->setWatermark ( Event::READ, 0, 0xffffff ); //Adjusts read and/or write watermarks
+    $event->setWatermark(Event::READ, 0, 0xffffff); //Adjusts read and/or write watermarks
     $event->setPriority(10);
     $event->enable(Event::READ | Event::PERSIST);
 
@@ -107,11 +107,11 @@ function ev_read($buffer, $flag, $id)
 
 function ev_write($buffer, $id)
 {
-    echo "$id -- " ."\n";
+    echo "$id -- " . "\n";
 }
 
 function ev_status($buffer, $events, $id)
 {
-    echo "ev_status - ".$events."\n";
+    echo "ev_status - " . $events . "\n";
 }
 
